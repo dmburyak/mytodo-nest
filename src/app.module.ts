@@ -5,9 +5,9 @@ import { AppService } from './app.service';
 import { TasksModule } from './tasks/tasks.module';
 import { CategoriesModule } from './categories/categories.module';
 import { PrioritiesModule } from './priorities/priorities.module';
-import { Task } from './tasks/task.entity';
-import { Category } from './categories/category.entity';
-import { Priority } from './priorities/priority.entity';
+import { Task } from './tasks/tasks.entity';
+import { Category } from './categories/categories.entity';
+import { Priority } from './priorities/priorities.entity';
 
 @Module({
   imports: [

@@ -1,4 +1,4 @@
-export interface PriorityModel {
+export interface Priority {
   id?: number;
   title: string;
   color: string;
