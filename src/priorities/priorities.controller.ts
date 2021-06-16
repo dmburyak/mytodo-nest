@@ -10,8 +10,8 @@ import {
 import { PrioritiesService } from './priorities.service';
 import { Priority } from './priority.model';
 
-@Controller('categories')
-export class CategoriesController {
+@Controller('priorities')
+export class PrioritiesController {
   constructor(private readonly prioritiesService: PrioritiesService) {}
 
   @Post()
