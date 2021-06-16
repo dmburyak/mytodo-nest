@@ -1,34 +1,42 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { PrioritiesService } from './priorities.service';
-import { CreatePriorityDto } from './dto/create-priority.dto';
-import { UpdatePriorityDto } from './dto/update-priority.dto';
+import { Priority } from './priority.model';
 
-@Controller('priorities')
-export class PrioritiesController {
+@Controller('categories')
+export class CategoriesController {
   constructor(private readonly prioritiesService: PrioritiesService) {}
 
   @Post()
-  create(@Body() createPriorityDto: CreatePriorityDto) {
-    return this.prioritiesService.create(createPriorityDto);
+  async create(@Body() priority: Priority): Promise<Priority[]> {
+    return this.prioritiesService.create(priority);
   }
 
   @Get()
-  findAll() {
+  async findAll(): Promise<Priority[]> {
     return this.prioritiesService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string): Promise<Priority> {
     return this.prioritiesService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePriorityDto: UpdatePriorityDto) {
-    return this.prioritiesService.update(+id, updatePriorityDto);
+  @Patch(':id/update')
+  async update(@Param('id') id, @Body() priority: Priority): Promise<Priority> {
+    priority.id = Number(id);
+    return this.prioritiesService.update(priority);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.prioritiesService.remove(+id);
+  @Delete(':id/delete')
+  async delete(@Param('id') id: string) {
+    return this.prioritiesService.delete(+id);
   }
 }

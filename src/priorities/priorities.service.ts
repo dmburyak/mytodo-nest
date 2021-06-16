@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePriorityDto } from './dto/create-priority.dto';
-import { UpdatePriorityDto } from './dto/update-priority.dto';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Priorities } from './priorities.entity';
+import { Priority } from './priority.model';
 
 @Injectable()
 export class PrioritiesService {
-  create(createPriorityDto: CreatePriorityDto) {
-    return 'This action adds a new priority';
+  constructor(
+    @InjectRepository(Priorities)
+    private readonly priorityRepository: Repository<Priorities>,
+  ) {}
+
+  async create(priority: Priority): Promise<any> {
+    return await this.priorityRepository.save(priority);
   }
 
-  findAll() {
-    return `This action returns all priorities`;
+  async findAll(): Promise<any> {
+    return await this.priorityRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} priority`;
+  async findOne(id: number): Promise<any> {
+    return await this.priorityRepository.findOne(id);
   }
 
-  update(id: number, updatePriorityDto: UpdatePriorityDto) {
-    return `This action updates a #${id} priority`;
+  async update(priority: Priority): Promise<any> {
+    return await this.priorityRepository.update(priority.id, priority);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} priority`;
+  async delete(id: number): Promise<any> {
+    return await this.priorityRepository.delete(id);
   }
 }
