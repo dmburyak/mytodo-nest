@@ -5,12 +5,15 @@ import { AppService } from './app.service';
 import { TasksModule } from './tasks/tasks.module';
 import { CategoriesModule } from './categories/categories.module';
 import { PrioritiesModule } from './priorities/priorities.module';
-import { Task } from './tasks/tasks.entity';
-import { Category } from './categories/categories.entity';
-import { Priority } from './priorities/priorities.entity';
+import { Tasks } from './tasks/tasks.entity';
+import { Categories } from './categories/categories.entity';
+import { Priorities } from './priorities/priorities.entity';
+import { FlightsModule } from './flights/flights.module';
+import { Flights } from './flights/flights.entity';
 
 @Module({
   imports: [
+    FlightsModule,
     TasksModule,
     CategoriesModule,
     PrioritiesModule,
@@ -18,10 +21,12 @@ import { Priority } from './priorities/priorities.entity';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
+      // username: 'dm',
       username: 'postgres',
       password: '111111',
       database: 'myTodo',
-      entities: [Task, Category, Priority],
+      // database: 'transportation',
+      entities: [Tasks, Categories, Priorities, Flights],
       synchronize: true,
     }),
   ],

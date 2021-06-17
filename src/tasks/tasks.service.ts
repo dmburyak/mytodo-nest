@@ -16,6 +16,7 @@ export class TasksService {
   }
 
   async findAll(): Promise<any> {
+    console.log('1212');
     return await this.taskRepository.find();
   }
 

@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Categories } from './categories.entity';
 import { Category } from './category.model';
 
 @Injectable()
 export class CategoriesService {
+  testArr = [1, 2, 3];
+
   constructor(
     @InjectRepository(Categories)
     private readonly categoryRepository: Repository<Categories>,
@@ -16,7 +18,8 @@ export class CategoriesService {
   }
 
   async findAll(): Promise<any> {
-    return await this.categoryRepository.find();
+    // return await this.testArr;
+    return this.categoryRepository.find();
   }
 
   async findOne(id: number): Promise<any> {

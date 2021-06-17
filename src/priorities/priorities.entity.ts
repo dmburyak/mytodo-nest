@@ -7,4 +7,7 @@ export class Priorities {
 
   @Column()
   title: string;
+
+  @Column()
+  color: string;
 }
