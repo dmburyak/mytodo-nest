@@ -1,4 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Priority } from '../priorities/priority.model';
+import { Priorities } from '../priorities/priorities.entity';
+import { Categories } from '../categories/categories.entity';
+import { Category } from '../categories/category.model';
 
 @Entity()
 export class Tasks {
@@ -8,11 +12,14 @@ export class Tasks {
   @Column()
   title: string;
 
-  @Column()
-  priority: number;
+  @ManyToOne(() => Priorities, (priority) => priority.id, { eager: true })
+  // @ManyToOne(() => Priorities, (priority) => priority.id)
+  @JoinColumn()
+  priority: Priority;
 
-  @Column()
-  category: number;
+  @ManyToOne(() => Categories, (category) => category.id, { eager: true })
+  @JoinColumn()
+  category: Category;
 
   @Column()
   completed: boolean;

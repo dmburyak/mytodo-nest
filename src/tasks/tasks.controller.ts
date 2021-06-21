@@ -20,7 +20,7 @@ export class TasksController {
   }
 
   @Get()
-  async findAll(): Promise<Task[]> {
+  async findAll(): Promise<any> {
     return this.tasksService.findAll();
   }
 

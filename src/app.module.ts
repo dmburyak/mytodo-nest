@@ -28,6 +28,7 @@ import { Flights } from './flights/flights.entity';
       // database: 'transportation',
       entities: [Tasks, Categories, Priorities, Flights],
       synchronize: true,
+      logging: true,
     }),
   ],
   controllers: [AppController],
